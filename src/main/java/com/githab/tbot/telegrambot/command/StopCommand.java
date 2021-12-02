@@ -7,7 +7,7 @@ public class StopCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
 
-    private static final String STOP_MESSAGE = "All your subscribes have been deactivated.";
+    public static final String STOP_MESSAGE = "All your subscribes have been deactivated.";
 
     public StopCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;
