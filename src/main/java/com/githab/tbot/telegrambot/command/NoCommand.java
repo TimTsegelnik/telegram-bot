@@ -7,7 +7,7 @@ public class NoCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
 
-    private static final String NO_MESSAGE = "I'm executing commands which start with(/).\n" +
+    public static final String NO_MESSAGE = "I'm executing commands which start with(/).\n" +
             "In case you want to see list of commands inter: /help";
 
     public NoCommand(SendBotMessageService sendBotMessageService) {

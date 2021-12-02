@@ -7,7 +7,7 @@ public class UnknownCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
 
-    private static final String UNKNOWN_MESSAGE = "I don't understand you \uD83D\uDE1F," +
+    public static final String UNKNOWN_MESSAGE = "I don't understand you \uD83D\uDE1F," +
             " enter /help if you want to know allowed commands";
 
     public UnknownCommand(SendBotMessageService sendBotMessageService) {

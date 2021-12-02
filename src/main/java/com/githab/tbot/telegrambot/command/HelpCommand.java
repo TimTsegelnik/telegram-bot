@@ -9,7 +9,7 @@ public class HelpCommand implements Command{
 
     private final SendBotMessageService sendBotMessageService;
 
-    private static final String HELP_MESSAGE = String.format(
+    public static final String HELP_MESSAGE = String.format(
             "<b>Available command</b>\n" +
                     "<b>Start\\finish bot working</b>\n" +
                     "%s - start working with me\n" +
