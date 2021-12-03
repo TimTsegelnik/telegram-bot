@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <unirest.version>3.11.01</unirest.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,12 @@
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots-spring-boot-starter</artifactId>
             <version>5.0.1</version>
+        </dependency>
+        <!--library for created request to javarush-->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>${unirest.version}</version>
         </dependency>
 
         <!--lombok-->
