@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.4.0-SNAPSHOT
+
+*   JBot-1: added repository layer
+
 ## 0.3.0-SNAPSHOT
 
 *   JBot-6: implement deployment process to the project

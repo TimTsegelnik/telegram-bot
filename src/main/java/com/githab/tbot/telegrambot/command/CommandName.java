@@ -1,6 +1,7 @@
 package com.githab.tbot.telegrambot.command;
 
 public enum CommandName {
+    STAT("/stat"),
     NO(""),
     HELP("/help"),
     START("/start"),
