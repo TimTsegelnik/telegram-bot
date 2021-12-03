@@ -1,6 +1,8 @@
 package com.githab.tbot.telegrambot.bot;
 
+import com.githab.tbot.telegrambot.client.JRGroupClient;
 import com.githab.tbot.telegrambot.command.CommandContainer;
+import com.githab.tbot.telegrambot.service.GroupSubService;
 import com.githab.tbot.telegrambot.service.SendBotMessageServiceImpl;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     private final CommandContainer commandContainer;
 
     @Autowired
-    public TelegramBot(TelegramUserService telegramUserService) {
+    public TelegramBot(TelegramUserService telegramUserService, JRGroupClient groupClient,
+                       GroupSubService groupSubService) {
         this.commandContainer = new CommandContainer(
                 new SendBotMessageServiceImpl(this),
-                telegramUserService
+                telegramUserService, groupClient, groupSubService
         );
     }
 

@@ -1,5 +1,6 @@
 package com.githab.tbot.telegrambot.repository;
 
+import com.githab.tbot.telegrambot.repository.entity.GroupSub;
 import com.githab.tbot.telegrambot.repository.entity.TelegramUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,9 +24,9 @@ class TelegramUserRepositoryTest {
     @Autowired
     private TelegramUserRepository telegramUserRepository;
 
-    @Sql(scripts = {"/sql/clearDbs.sql","/sql/telegram_users.sql" })
+    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/telegram_users.sql"})
     @Test
-    public void shouldProbablyFindAllActivesUsers(){
+    public void shouldProbablyFindAllActivesUsers() {
         //when
         List<TelegramUser> users = telegramUserRepository.findAllByActiveTrue();
 
@@ -35,7 +36,7 @@ class TelegramUserRepositoryTest {
 
     @Sql(scripts = {"/sql/clearDbs.sql"})
     @Test
-    public void shouldProperlySaveTelegramUser(){
+    public void shouldProperlySaveTelegramUser() {
         //given
         TelegramUser telegramUser = new TelegramUser();
         telegramUser.setChatId("1234567890");
@@ -48,5 +49,22 @@ class TelegramUserRepositoryTest {
         //then
         Assertions.assertTrue(saveUser.isPresent());
         assertEquals(telegramUser, saveUser.get());
+    }
+
+    @Sql(scripts = {"/sql/clearDbs.sql", "/sql/fiveGroupSubsForUser.sql"})
+    @Test
+    public void shouldProperlyGetAllGroupSubsForUser() {
+        //when
+        Optional<TelegramUser> userFromDb = telegramUserRepository.findById("1");
+
+        //then
+        assertTrue(userFromDb.isPresent());
+        List<GroupSub> groupSubs = userFromDb.get().getGroupSubs();
+        for (int i = 0; i < groupSubs.size(); i++) {
+            assertEquals(String.format("g%s", (i + 1)), groupSubs.get(i).getTitle());
+            assertEquals(i + 1, groupSubs.get(i).getId());
+            assertEquals(i + 1, groupSubs.get(i).getLastArticleId());
+        }
+
     }
 }
