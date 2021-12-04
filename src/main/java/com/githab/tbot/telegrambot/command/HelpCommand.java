@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import static com.githab.tbot.telegrambot.command.CommandName.*;
 
-public class HelpCommand implements Command{
+public class HelpCommand implements Command {
 
     private final SendBotMessageService sendBotMessageService;
 
@@ -17,12 +17,15 @@ public class HelpCommand implements Command{
 
                     "Working with group's subscriber\n" +
                     "%s - subscribe on group of articles\n" +
+                    "%s - delete group in your subscriptions" +
                     "%s - get list you group\\n" +
 
                     "%s - get help about my work\n" +
                     "%s - get my statistic\n",
-    START.getCommandName(),STOP.getCommandName(), ADD_GROUP_SUB.getCommandName(),
-    LIST_GROUP_SUB.getCommandName(), HELP.getCommandName(), STAT.getCommandName());
+            START.getCommandName(), STOP.getCommandName(),
+            ADD_GROUP_SUB.getCommandName(), DELETE_GROUP_SUB.getCommandName(),
+            LIST_GROUP_SUB.getCommandName(), HELP.getCommandName(),
+            STAT.getCommandName());
 
     public HelpCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;

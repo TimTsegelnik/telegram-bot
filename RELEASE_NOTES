@@ -1,17 +1,21 @@
 # Release Notes
 
+## 0.6.0-SNAPSHOT
+
+*   TBot-7: added the ability to delete group subscription.
+
 ## 0.5.0-SNAPSHOT
 
-*   JBot-5: added ability to subscribe on group
-*   JBot-6: added ability to get a list of group subscriptions.
+*   TBot-5: added ability to subscribe on group
+*   TBot-6: added ability to get a list of group subscriptions.
 
 ## 0.4.0-SNAPSHOT
 
-*   JBot-1: added repository layer
+*   TBot-1: added repository layer
 
 ## 0.3.0-SNAPSHOT
 
-*   JBot-6: implement deployment process to the project
+*   TBot-6: implement deployment process to the project
 
 ## 0.2.0-SNAPSHOT
 
