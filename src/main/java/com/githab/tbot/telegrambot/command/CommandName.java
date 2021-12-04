@@ -7,7 +7,8 @@ public enum CommandName {
     NO(""),
     HELP("/help"),
     START("/start"),
-    STOP("/stop");
+    STOP("/stop"),
+    DELETE_GROUP_SUB("/deleteGroupSub");
 
     private final String commandName;
 
