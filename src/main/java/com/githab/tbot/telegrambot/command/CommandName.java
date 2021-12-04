@@ -1,6 +1,7 @@
 package com.githab.tbot.telegrambot.command;
 
 public enum CommandName {
+    LIST_GROUP_SUB("/listGroupSub"),
     ADD_GROUP_SUB("/addgroupsub"),
     STAT("/stat"),
     NO(""),
