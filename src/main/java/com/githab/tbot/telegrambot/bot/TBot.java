@@ -4,6 +4,7 @@ import com.githab.tbot.telegrambot.client.JRGroupClient;
 import com.githab.tbot.telegrambot.command.CommandContainer;
 import com.githab.tbot.telegrambot.service.GroupSubService;
 import com.githab.tbot.telegrambot.service.SendBotMessageServiceImpl;
+import com.githab.tbot.telegrambot.service.StatisticsService;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -29,11 +30,12 @@ public class TBot extends TelegramLongPollingBot {
 
     public TBot(TelegramUserService telegramUserService, JRGroupClient groupClient,
                 GroupSubService groupSubService,
-                @Value("#{'${bot.admins}'.split(',')}")List<String> admins) {
+                @Value("#{'${bot.admins}'.split(',')}")List<String> admins,
+                StatisticsService statisticsService) {
         this.commandContainer = new CommandContainer(
                 new SendBotMessageServiceImpl(this),
                 telegramUserService, groupClient, groupSubService,
-                admins);
+                admins, statisticsService);
     }
 
     @Override
