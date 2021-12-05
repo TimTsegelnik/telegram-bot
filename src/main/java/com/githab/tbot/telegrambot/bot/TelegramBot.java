@@ -7,6 +7,7 @@ import com.githab.tbot.telegrambot.service.SendBotMessageServiceImpl;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static com.githab.tbot.telegrambot.command.CommandName.NO;
+
 
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
@@ -30,7 +32,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
-    @Autowired
     public TelegramBot(TelegramUserService telegramUserService, JRGroupClient groupClient,
                        GroupSubService groupSubService) {
         this.commandContainer = new CommandContainer(
