@@ -1,17 +1,24 @@
 package com.githab.tbot.telegrambot.service;
 
-import com.githab.tbot.telegrambot.bot.TelegramBot;
-import org.jvnet.hk2.annotations.Service;
+import com.githab.tbot.telegrambot.bot.TBot;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.List;
+
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
 public class SendBotMessageServiceImpl implements SendBotMessageService{
 
-    private final TelegramBot telegramBot;
+    private final TBot tBot;
 
-    public SendBotMessageServiceImpl(TelegramBot telegramBot) {
-        this.telegramBot = telegramBot;
+    @Autowired
+    public SendBotMessageServiceImpl(TBot tBot) {
+        this.tBot = tBot;
     }
 
     @Override
@@ -22,10 +29,17 @@ public class SendBotMessageServiceImpl implements SendBotMessageService{
         sendMessage.setText(message);
 
         try {
-            telegramBot.execute(sendMessage);
+            tBot.execute(sendMessage);
         } catch (TelegramApiException e) {
            //todo add login to the project
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void sendMessage(String chatId, List<String> messages) {
+        if (isEmpty(messages)) return;
+
+        messages.forEach(m -> sendMessage(chatId, m));
     }
 }

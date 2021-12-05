@@ -7,6 +7,7 @@ import com.githab.tbot.telegrambot.repository.entity.TelegramUser;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.NotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,7 +20,6 @@ public class GroupSubServiceImpl implements GroupSubService {
         this.groupSubRepository = groupSubRepository;
         this.telegramUserService = telegramUserService;
     }
-
 
     @Override
     public GroupSub save(String chatId, GroupDiscussionInfo groupDiscussionInfo) {
@@ -53,5 +53,10 @@ public class GroupSubServiceImpl implements GroupSubService {
     @Override
     public Optional<GroupSub> findById(Integer id) {
         return groupSubRepository.findById(id);
+    }
+
+    @Override
+    public List<GroupSub> findAll() {
+        return groupSubRepository.findAll();
     }
 }

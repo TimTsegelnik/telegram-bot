@@ -1,6 +1,6 @@
 package com.githab.tbot.telegrambot.service;
 
-import com.githab.tbot.telegrambot.bot.TelegramBot;
+import com.githab.tbot.telegrambot.bot.TBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,18 +8,16 @@ import org.mockito.Mockito;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @DisplayName("Unit-level testing for SendBotMessageServiceImpl")
 class SendBotMessageServiceImplTest {
 
     private SendBotMessageService sendBotMessageService;
-    private TelegramBot telegramBot;
+    private TBot tBot;
 
     @BeforeEach
     public void init(){
-        telegramBot = Mockito.mock(TelegramBot.class);
-        sendBotMessageService = new SendBotMessageServiceImpl(telegramBot);
+        tBot = Mockito.mock(TBot.class);
+        sendBotMessageService = new SendBotMessageServiceImpl(tBot);
     }
 
     @Test
@@ -37,6 +35,6 @@ class SendBotMessageServiceImplTest {
         sendBotMessageService.sendMessage(chatId, message);
 
         //then
-        Mockito.verify(telegramBot).execute(sendMessage);
+        Mockito.verify(tBot).execute(sendMessage);
     }
 }

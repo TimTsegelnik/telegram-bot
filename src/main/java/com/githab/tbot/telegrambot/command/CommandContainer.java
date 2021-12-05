@@ -17,8 +17,6 @@ public class CommandContainer {
     public CommandContainer(SendBotMessageService sendBotMessageService, TelegramUserService telegramUserService,
                             JRGroupClient jrGroupClient, GroupSubService groupSubService) {
 
-        AddGroupSubCommand addGroupSubCommand = new AddGroupSubCommand(sendBotMessageService, jrGroupClient, groupSubService);
-
         commandMap = ImmutableMap.<String, Command>builder()
                 .put(START.getCommandName(), new StartCommand(telegramUserService, sendBotMessageService))
                 .put(STOP.getCommandName(), new StopCommand(telegramUserService, sendBotMessageService))

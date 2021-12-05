@@ -1,6 +1,9 @@
 package com.githab.tbot.telegrambot.client;
 
-import com.githab.tbot.telegrambot.client.dto.*;
+import com.githab.tbot.telegrambot.client.dto.GroupCountRequestArgs;
+import com.githab.tbot.telegrambot.client.dto.GroupDiscussionInfo;
+import com.githab.tbot.telegrambot.client.dto.GroupInfo;
+import com.githab.tbot.telegrambot.client.dto.GroupRequestArgs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Integration-level testing for JRGroupClientImplTest")
 class JRGroupClientTest {
-    private final JRGroupClient groupClient
-            = new JRCGroupClientImpl("https://javarush.ru/api/1.0/rest");
+
+
+    public final static String API_PATH = "https://javarush.ru/api/1.0/rest";
+
+    private final JRGroupClient groupClient = new JRCGroupClientImpl(API_PATH);
 
     @Test
     public void shouldProperlyGetGroupWithEmptyArgs() {

@@ -1,6 +1,6 @@
 package com.githab.tbot.telegrambot.command;
 
-import com.githab.tbot.telegrambot.bot.TelegramBot;
+import com.githab.tbot.telegrambot.bot.TBot;
 import com.githab.tbot.telegrambot.service.SendBotMessageService;
 import com.githab.tbot.telegrambot.service.SendBotMessageServiceImpl;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
@@ -13,8 +13,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 abstract class AbstractCommandTest {
 
-    protected TelegramBot telegramBot = Mockito.mock(TelegramBot.class);
-    protected SendBotMessageService sendBotMessageService = new SendBotMessageServiceImpl(telegramBot);
+    protected TBot tBot = Mockito.mock(TBot.class);
+    protected SendBotMessageService sendBotMessageService = new SendBotMessageServiceImpl(tBot);
     protected TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
 
     abstract String getCommandName();
@@ -43,7 +43,7 @@ abstract class AbstractCommandTest {
         getCommand().execute(update);
 
         //then
-        Mockito.verify(telegramBot).execute(sendMessage);
+        Mockito.verify(tBot).execute(sendMessage);
     }
 
     public static Update prepareUpdate(Long chatId, String commandName){
