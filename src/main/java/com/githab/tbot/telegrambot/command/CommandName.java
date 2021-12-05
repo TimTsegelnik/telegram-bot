@@ -8,7 +8,8 @@ public enum CommandName {
     HELP("/help"),
     START("/start"),
     STOP("/stop"),
-    DELETE_GROUP_SUB("/deleteGroupSub");
+    DELETE_GROUP_SUB("/deleteGroupSub"),
+    ADMIN_HELP("/ahelp");
 
     private final String commandName;
 

@@ -1,21 +1,29 @@
 package com.githab.tbot.telegrambot.command;
 
 import com.githab.tbot.telegrambot.client.JRGroupClient;
+import com.githab.tbot.telegrambot.command.annotation.AdminCommand;
 import com.githab.tbot.telegrambot.service.GroupSubService;
 import com.githab.tbot.telegrambot.service.SendBotMessageService;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import com.google.common.collect.ImmutableMap;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.util.List;
 
 import static com.githab.tbot.telegrambot.command.CommandName.*;
+import static java.util.Objects.nonNull;
 
 public class CommandContainer {
 
     private final ImmutableMap<String, Command> commandMap;
     private final Command unknownCommand;
+    private final List<String> admins;
 
 
     public CommandContainer(SendBotMessageService sendBotMessageService, TelegramUserService telegramUserService,
-                            JRGroupClient jrGroupClient, GroupSubService groupSubService) {
+                            JRGroupClient jrGroupClient, GroupSubService groupSubService,
+                            List<String> admins) {
+        this.admins = admins;
 
         commandMap = ImmutableMap.<String, Command>builder()
                 .put(START.getCommandName(), new StartCommand(telegramUserService, sendBotMessageService))
@@ -28,12 +36,25 @@ public class CommandContainer {
                 .put(LIST_GROUP_SUB.getCommandName(), new ListGroupSubCommand(sendBotMessageService, telegramUserService))
                 .put(DELETE_GROUP_SUB.getCommandName(),
                         new DeleteGroupSubCommand(sendBotMessageService, telegramUserService, groupSubService))
+                .put(ADMIN_HELP.getCommandName(), new AdminHelpCommand(sendBotMessageService))
                 .build();
 
         unknownCommand = new UnknownCommand(sendBotMessageService);
     }
 
-    public Command retrieveCommand(String commandIdentifier) {
-        return commandMap.getOrDefault(commandIdentifier, unknownCommand);
+    public Command retrieveCommand(String commandIdentifier, String username) {
+        Command orDefault = commandMap.getOrDefault(commandIdentifier, unknownCommand);
+        if (isAdminCommand(orDefault)){
+            if (admins.contains(username)){
+                return orDefault;
+            }else {
+                return unknownCommand;
+            }
+        }
+        return orDefault;
+    }
+
+    private boolean isAdminCommand(Command command) {
+        return nonNull(command.getClass().getAnnotation(AdminCommand.class));
     }
 }

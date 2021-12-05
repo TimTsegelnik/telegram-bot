@@ -1,9 +1,11 @@
 package com.githab.tbot.telegrambot.command;
 
+import com.githab.tbot.telegrambot.command.annotation.AdminCommand;
 import com.githab.tbot.telegrambot.service.SendBotMessageService;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+@AdminCommand
 public class StatCommand implements Command{
     public static final String STAT_MESSAGE = "There are %s people are using telegram bot right now!";
 

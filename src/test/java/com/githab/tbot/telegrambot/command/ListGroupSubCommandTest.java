@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.githab.tbot.telegrambot.command.AbstractCommandTest.prepareUpdate;
 import static com.githab.tbot.telegrambot.command.CommandName.LIST_GROUP_SUB;
 
 @DisplayName("Unit-level testing for ListGroupSubCommand")
@@ -41,15 +42,13 @@ class ListGroupSubCommandTest {
 
         ListGroupSubCommand command = new ListGroupSubCommand(sendBotMessageService, telegramUserService);
 
-        Update update = new Update();
-        Message message = Mockito.mock(Message.class);
-        Mockito.when(message.getChatId()).thenReturn(Long.valueOf(telegramUser.getChatId()));
-        Mockito.when(message.getText()).thenReturn(LIST_GROUP_SUB.getCommandName());
+        Update update = prepareUpdate(Long.valueOf(telegramUser.getChatId()), LIST_GROUP_SUB.getCommandName());
 
-        String collectedGroup = "I found all subscribes for groups: \n\n" +
-                telegramUser.getGroupSubs().stream()
-                        .map(it -> "Group: " + it.getTitle() + " , ID = " + it.getId() + "\n")
-                        .collect(Collectors.joining());
+        String joinedGroup = telegramUser.getGroupSubs().stream()
+                .map(it -> "Group: " + it.getTitle() + " , ID = " + it.getId() + " \n")
+                .collect(Collectors.joining());
+
+        String collectedGroup = String.format("I found all subscribes for groups: \n\n %s", joinedGroup);
 
         //when
         command.execute(update);
