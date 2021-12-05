@@ -28,11 +28,13 @@ public class ListGroupSubCommand implements Command{
         TelegramUser telegramUser = telegramUserService
                 .findByChatId(getChatId(update))
                 .orElseThrow(NotFoundException::new);
-        String message = "I found all subscribes for groups: \n\n";
+        String message = "I found all subscribes for groups: \n\n %s";
         String collect = telegramUser.getGroupSubs().stream()
                 .map(it -> "Group: " + it.getTitle() + " , ID = " + it.getId() + " \n")
                 .collect(Collectors.joining());
 
-        sendBotMessageService.sendMessage(telegramUser.getChatId(), message + collect);
+        String formatMessage = String.format(message, collect);
+
+        sendBotMessageService.sendMessage(telegramUser.getChatId(), formatMessage);
     }
 }

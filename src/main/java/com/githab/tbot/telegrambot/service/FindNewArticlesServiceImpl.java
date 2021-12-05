@@ -44,9 +44,9 @@ public class FindNewArticlesServiceImpl implements FindNewArticlesService {
     private void notifySubscribersAboutNewArticles(GroupSub gSub, List<PostInfo> newPosts) {
         Collections.reverse(newPosts);
         List<String> messagesWithNewArticles = newPosts.stream()
-                .map(post -> String.format("✨Вышла новая статья <b>%s</b> в группе <b>%s</b>.✨\n\n" +
-                                "<b>Описание:</b> %s\n\n" +
-                                "<b>Ссылка:</b> %s\n",
+                .map(post -> String.format("✨There is a new article<b>%s</b> in the group <b>%s</b>.✨\n\n" +
+                                "<b>Description:</b> %s\n\n" +
+                                "<b>Link:</b> %s\n",
                         post.getTitle(), gSub.getTitle(), post.getDescription(), getPostUrl(post.getKey())))
                 .collect(Collectors.toList());
 
