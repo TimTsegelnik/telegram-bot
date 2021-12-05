@@ -5,23 +5,16 @@ import com.githab.tbot.telegrambot.command.CommandContainer;
 import com.githab.tbot.telegrambot.service.GroupSubService;
 import com.githab.tbot.telegrambot.service.SendBotMessageServiceImpl;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import javax.validation.Valid;
-import java.util.List;
 
 import static com.githab.tbot.telegrambot.command.CommandName.NO;
 
 
 @Component
-public class TelegramBot extends TelegramLongPollingBot {
+public class TBot extends TelegramLongPollingBot {
 
     public static String COMMAND_PREFIX = "/";
 
@@ -32,8 +25,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final CommandContainer commandContainer;
 
-    public TelegramBot(TelegramUserService telegramUserService, JRGroupClient groupClient,
-                       GroupSubService groupSubService) {
+    public TBot(TelegramUserService telegramUserService, JRGroupClient groupClient,
+                GroupSubService groupSubService) {
         this.commandContainer = new CommandContainer(
                 new SendBotMessageServiceImpl(this),
                 telegramUserService, groupClient, groupSubService

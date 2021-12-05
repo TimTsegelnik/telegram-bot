@@ -18,7 +18,7 @@ jobs:
         uses: mirromutth/mysql-action@v1.1
         with:
           mysql version: '5.7'
-          mysql database: 'dev_tbot_db'
+          mysql database: 'dev-tbot-db'
           mysql root password: 'root'
           mysql user: 'dev_user'
           mysql password: 'dev_password'

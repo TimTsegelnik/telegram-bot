@@ -5,6 +5,7 @@ import com.githab.tbot.telegrambot.client.dto.PostInfo;
 import com.githab.tbot.telegrambot.repository.entity.GroupSub;
 import com.githab.tbot.telegrambot.repository.entity.TelegramUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -19,13 +20,13 @@ public class FindNewArticlesServiceImpl implements FindNewArticlesService {
     private final JRPostClient jrPostClient;
     private final SendBotMessageService sendBotMessageService;
 
-    @Autowired
+
     public FindNewArticlesServiceImpl(GroupSubService groupSubService,
-                                     JRPostClient jrPostClient,
-                                     SendBotMessageService sendBotMessageService) {
+                                      JRPostClient jrPostClient,
+                                      SendBotMessageService sendMessageService) {
         this.groupSubService = groupSubService;
         this.jrPostClient = jrPostClient;
-        this.sendBotMessageService = sendBotMessageService;
+        this.sendBotMessageService = sendMessageService;
     }
 
 
