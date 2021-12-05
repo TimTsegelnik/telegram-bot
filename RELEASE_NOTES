@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.8.0-SNAPSHOT
+
+*   TBot-10: extended bot statistics for admins.
+
 ## 0.6.0-SNAPSHOT
 
 *   TBot-7: added the ability to delete group subscription.

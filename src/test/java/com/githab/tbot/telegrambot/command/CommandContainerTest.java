@@ -3,6 +3,7 @@ package com.githab.tbot.telegrambot.command;
 import com.githab.tbot.telegrambot.client.JRGroupClient;
 import com.githab.tbot.telegrambot.service.GroupSubService;
 import com.githab.tbot.telegrambot.service.SendBotMessageService;
+import com.githab.tbot.telegrambot.service.StatisticsService;
 import com.githab.tbot.telegrambot.service.TelegramUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,11 +27,13 @@ class CommandContainerTest {
         TelegramUserService telegramUserService = Mockito.mock(TelegramUserService.class);
         JRGroupClient jrGroupClient = Mockito.mock(JRGroupClient.class);
         GroupSubService groupSubService = Mockito.mock(GroupSubService.class);
+        StatisticsService statisticsService = Mockito.mock(StatisticsService.class);
         commandContainer = new CommandContainer(sendBotMessageService,
                 telegramUserService,
                 jrGroupClient,
                 groupSubService,
-                singletonList("username"));
+                singletonList("username"),
+                statisticsService);
     }
 
     @Test
